@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAGITTARIUS | Kişisel Portfolyo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="room">
+        <div class="monitor-container">
+            <div class="screen" id="monitorScreen">
+                
+                <button class="power-btn" id="powerBtn" onclick="turnOnMonitor()">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,6H13V12H11V6Z" />
+                    </svg>
+                    <span>SİSTEMİ AÇ</span>
+                </button>
+
+                <div class="categories">
+                    <div class="card">
+                        <h3>EĞİTİM & AKADEMİ</h3>
+                        <p>Yazılım Mühendisliği | Konya Teknik Üniversitesi</p>
+                    </div>
+                    <div class="card">
+                        <h3>HOBİLER & İLGİ ALANLARI</h3>
+                        <p>Fotoğrafçılık, Oyun Geliştirme (Unity), Gezi</p>
+                    </div>
+                    <div class="card">
+                        <h3>DİLLER & TEKNOLOJİLER</h3>
+                        <p>Java, C++, SQL, Git & GitHub, VS Code</p>
+                    </div>
+                    <div class="card">
+                        <h3>SOSYAL & İLETİŞİM</h3>
+                        <p>Instagram & GitHub profillerime hızlı geçiş.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function turnOnMonitor() {
+            const screen = document.getElementById('monitorScreen');
+            const powerBtn = document.getElementById('powerBtn');
+            
+            powerBtn.style.opacity = '0';
+            powerBtn.style.transform = 'scale(0.5)';
+            
+            setTimeout(() => {
+                powerBtn.style.display = 'none';
+                screen.classList.add('active');
+            }, 300);
+        }
+    </script>
+
+</body>
+</html>
