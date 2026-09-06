@@ -10,19 +10,15 @@
 
     <div class="room" id="roomEnv">
         
-        <!-- Tuşa basılınca ortadan dışarıya yayılan siyah bulut / odak efekti -->
         <div class="dark-cloud-effect"></div>
 
-        <!-- Başlangıçtaki Gündüz Çalışma Masası ve Monitör Düzeni -->
         <div class="desk-setup" id="deskSetup">
             
             <div class="monitor-frame">
                 <div class="screen" id="monitorScreen">
                     <button class="power-btn" id="powerBtn" onclick="turnOnSystem()">
                         <svg viewBox="0 0 24 24" style="fill: none; stroke: #ef4444; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;">
-                            <!-- Üst kısmı hafif aralık olan çember yayı -->
                             <path d="M18.36,6.64A9,9 0 1,1 5.64,6.64" />
-                            <!-- Yukarı doğru sarkan dikey çubuk -->
                             <line x1="12" y1="2" x2="12" y2="10" />
                         </svg>
                         <span>SİSTEMİ AÇ</span>
@@ -30,11 +26,9 @@
                 </div>
             </div>
 
-            <!-- Monitör Ayağı -->
             <div class="monitor-stand-neck"></div>
             <div class="monitor-stand-base"></div>
 
-            <!-- Detaylı Klavye ve Mouse -->
             <div class="desk-accessories">
                 <div class="keyboard">
                     <div class="key-line"></div>
@@ -48,23 +42,24 @@
 
         </div>
 
-        <!-- Monitörün dışına, tüm odaya / ekrana dağılacak kategori kartları -->
+        <div class="intro-content" id="introContent">
+            <h1>Merhaba, ben Miraç</h1>
+            <p>Yazılım mühendisliği öğrencisi ve dijital dünyada kendi projelerini üreten bir geliştiriciyim. Teknolojiye, kod yazmaya ve yeni şeyler keşfetmeye tutkuyla bağlıyım.</p>
+            <span class="intro-hint">Beni daha fazla tanımak için kategorilere göz at</span>
+        </div>
+
         <div class="categories" id="categoriesContainer">
             <div class="card">
                 <h3>EĞİTİM & AKADEMİ</h3>
-                <p>Yazılım Mühendisliği | Konya Teknik Üniversitesi</p>
             </div>
             <div class="card">
-                <h3>HOBİLER</h3>
-                <p>Fotoğrafçılık, Oyun Geliştirme (Unity), Gezi</p>
+                <h3>HOBİLER & İLGİ ALANLARI</h3>
             </div>
             <div class="card">
                 <h3>TEKNOLOJİLER</h3>
-                <p>Java, C++, SQL, Git & GitHub, VS Code</p>
             </div>
             <div class="card">
                 <h3>SOSYAL & İLETİŞİM</h3>
-                <p>Instagram & GitHub profillerime hızlı geçiş.</p>
             </div>
         </div>
 
