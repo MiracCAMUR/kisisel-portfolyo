@@ -5,8 +5,7 @@
 }
 
 body {
-    background-color: #040609;
-    color: #fff;
+    background-color: #64748b;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     height: 100vh;
     display: flex;
@@ -15,32 +14,63 @@ body {
     overflow: hidden;
 }
 
-/* Oda / Pencere Kenarı Gün Işığı Atmosferi */
+/* ODA ATMOSFERİ: Göz yormayan, sol üstten ışık alan dengeli koyu gri/gümüş ton */
 .room {
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Sol üst köşeden odaya süzülen yumuşak gün ışığı efekti */
     background: 
-        radial-gradient(circle at 15% 10%, rgba(255, 220, 150, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at center, #0f172a 0%, #020305 100%);
+        radial-gradient(circle at 15% 15%, rgba(241, 245, 249, 0.35) 0%, transparent 40%),
+        radial-gradient(circle at center, #475569 0%, #1e293b 100%);
+    transition: background 1s ease;
 }
 
-/* Monitör (Ekranın büyük kısmını kaplayan dev ve şık çerçeve) */
-.monitor-container {
+/* ORTADAN DIŞARIYA YAYILAN SİYAH BULUT / ODAK KATMANI */
+.dark-cloud-effect {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(8, 11, 18, 0.98) 0%, rgba(2, 4, 8, 0.99) 70%, #000 100%);
+    opacity: 0;
+    transform: scale(0.2);
+    transition: all 0.9s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.room.active-system .dark-cloud-effect {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ÇALIŞMA MASASI KURULUMU */
+.desk-setup {
     position: relative;
-    width: 90vw;
-    height: 86vh;
-    background: #080b13;
-    border-radius: 18px;
-    border: 5px solid #1a2332;
-    box-shadow: 0 40px 90px rgba(0, 0, 0, 0.95), 0 0 45px rgba(0, 195, 255, 0.1);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    z-index: 2;
+    transition: all 0.8s ease;
+}
+
+.room.active-system .desk-setup {
+    opacity: 0.25;
+    transform: scale(0.85);
+    filter: blur(3px);
+}
+
+/* GERÇEKÇİ MONİTÖR ÇERÇEVESİ */
+.monitor-frame {
+    position: relative;
+    width: 720px;
+    height: 430px;
+    background: #1e222b;
+    border-radius: 14px;
+    border: 9px solid #282f3d;
+    box-shadow: 0 35px 70px rgba(0, 0, 0, 0.4), 0 5px 15px rgba(0, 0, 0, 0.2);
     overflow: hidden;
 }
 
@@ -48,14 +78,13 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
-    background: #020306;
+    background: #0f131a;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background 0.8s ease;
 }
 
-/* Güç Düğmesi */
+/* GÜÇ DÜĞMESİ (Kırmızı renk ve istediğin yeni ikon oranları) */
 .power-btn {
     background: none;
     border: none;
@@ -64,116 +93,182 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     transition: transform 0.3s ease;
     z-index: 10;
 }
 
 .power-btn svg {
-    width: 80px;
-    height: 80px;
-    fill: #ff3b3b;
-    filter: drop-shadow(0 0 18px rgba(255, 59, 59, 0.85));
+    width: 60px;
+    height: 60px;
+    fill: #ef4444; /* Canlı ve şık kırmızı */
+    filter: drop-shadow(0 0 14px rgba(239, 68, 68, 0.7));
     transition: transform 0.3s ease;
 }
 
 .power-btn:hover svg {
-    transform: scale(1.12);
-    filter: drop-shadow(0 0 28px rgba(255, 59, 59, 1));
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 22px rgba(239, 68, 68, 1));
 }
 
 .power-btn span {
-    color: #ff3b3b;
-    font-size: 15px;
-    letter-spacing: 3px;
+    color: #ef4444;
+    font-size: 11px;
+    letter-spacing: 2px;
     font-weight: 600;
 }
 
-.screen.active {
-    background: 
-        radial-gradient(circle at 20% 15%, rgba(255, 210, 130, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at center, #0a1428 0%, #010204 100%);
+/* MONİTÖR AYAĞI */
+.monitor-stand-neck {
+    width: 60px;
+    height: 40px;
+    background: linear-gradient(to bottom, #282f3d, #1a1e27);
+    clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
 }
 
-/* Kategoriler Konteyner */
+.monitor-stand-base {
+    width: 220px;
+    height: 10px;
+    background: #1a1e27;
+    border-radius: 5px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+/* KLAVYE VE MOUSE */
+.desk-accessories {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    margin-top: 12px;
+}
+
+.keyboard {
+    width: 360px;
+    height: 32px;
+    background: #232936;
+    border-radius: 6px;
+    border-top: 2px solid #3a4459;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+    transform: perspective(350px) rotateX(30deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 3px 8px;
+}
+
+.key-line {
+    width: 100%;
+    height: 5px;
+    background: #171c24;
+    border-radius: 2px;
+}
+
+.mouse {
+    width: 30px;
+    height: 48px;
+    background: #232936;
+    border-radius: 50% 50% 35% 35%;
+    border-top: 2px solid #3a4459;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.mouse-wheel {
+    position: absolute;
+    top: 8px;
+    width: 4px;
+    height: 12px;
+    background: #171c24;
+    border-radius: 2px;
+}
+
+/* KATEGORİ KARTLARI */
 .categories {
     position: absolute;
     width: 100%;
     height: 100%;
-    opacity: 0;
+    top: 0;
+    left: 0;
     pointer-events: none;
-    transform: scale(0.75);
-    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 5;
 }
 
-.screen.active .categories {
-    opacity: 1;
-    pointer-events: auto;
-    transform: scale(1);
-}
-
-/* Organik Bulut (Blob) Formunda Kartlar ve Köşelere Serpiştirilmiş Konumlar */
 .card {
     position: absolute;
-    background: rgba(0, 195, 255, 0.03);
-    border: 1px solid rgba(0, 195, 255, 0.35);
-    backdrop-filter: blur(14px);
-    padding: 24px;
+    background: rgba(0, 195, 255, 0.04);
+    border: 1px solid rgba(0, 195, 255, 0.4);
+    backdrop-filter: blur(12px);
+    padding: 22px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    transition: all 0.4s ease;
-    box-shadow: 0 0 25px rgba(0, 195, 255, 0.08);
-    width: 310px;
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 0 25px rgba(0, 195, 255, 0.1);
+    width: 300px;
     border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 0;
 }
 
-.card:nth-child(1) { /* Sol Üst */
+.room.active-system .categories .card {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.room.active-system .card:nth-child(1) { /* Sol Üst Köşe */
     top: 12%;
-    left: 7%;
-    border-radius: 200px 30px 220px 40px / 40px 200px 30px 220px;
-    transform: rotate(-3deg);
+    left: 8%;
+    transform: translate(0, 0) scale(1) rotate(-3deg);
 }
 
-.card:nth-child(2) { /* Sağ Üst */
-    top: 14%;
-    right: 7%;
-    border-radius: 40px 220px 30px 200px / 220px 40px 200px 30px;
-    transform: rotate(2.5deg);
+.room.active-system .card:nth-child(2) { /* Sağ Üst Köşe */
+    top: 12%;
+    right: 8%;
+    left: auto;
+    transform: translate(0, 0) scale(1) rotate(2.5deg);
 }
 
-.card:nth-child(3) { /* Sol Alt */
-    bottom: 14%;
-    left: 9%;
-    border-radius: 30px 200px 40px 220px / 200px 30px 220px 40px;
-    transform: rotate(2deg);
-}
-
-.card:nth-child(4) { /* Sağ Alt */
+.room.active-system .card:nth-child(3) { /* Sol Alt Köşe */
     bottom: 12%;
-    right: 9%;
-    border-radius: 220px 40px 200px 30px / 30px 220px 40px 200px;
-    transform: rotate(-2.5deg);
+    top: auto;
+    left: 8%;
+    transform: translate(0, 0) scale(1) rotate(2deg);
+}
+
+.room.active-system .card:nth-child(4) { /* Sağ Alt Köşe */
+    bottom: 12%;
+    top: auto;
+    right: 8%;
+    left: auto;
+    transform: translate(0, 0) scale(1) rotate(-2.5deg);
 }
 
 .card:hover {
     border-color: rgba(0, 195, 255, 0.95);
     box-shadow: 0 0 35px rgba(0, 195, 255, 0.45);
-    transform: scale(1.04) rotate(0deg) !important;
-    background: rgba(0, 195, 255, 0.07);
-    z-index: 5;
+    transform: scale(1.05) rotate(0deg) !important;
+    background: rgba(0, 195, 255, 0.09);
+    z-index: 10;
 }
 
 .card h3 {
-    font-size: 16px;
+    font-size: 15px;
     color: #33d1ff;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     letter-spacing: 1.2px;
     text-shadow: 0 0 10px rgba(51, 209, 255, 0.5);
 }
 
 .card p {
-    font-size: 13px;
+    font-size: 12.5px;
     color: #c5d8ef;
-    line-height: 1.5;
+    line-height: 1.4;
 }

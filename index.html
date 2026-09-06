@@ -8,43 +8,71 @@
 </head>
 <body>
 
-    <div class="room">
-        <div class="monitor-container">
-            <div class="screen" id="monitorScreen">
-                
-                <button class="power-btn" id="powerBtn" onclick="turnOnMonitor()">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,6H13V12H11V6Z" />
-                    </svg>
-                    <span>SİSTEMİ AÇ</span>
-                </button>
+    <div class="room" id="roomEnv">
+        
+        <!-- Tuşa basılınca ortadan dışarıya yayılan siyah bulut / odak efekti -->
+        <div class="dark-cloud-effect"></div>
 
-                <div class="categories">
-                    <div class="card">
-                        <h3>EĞİTİM & AKADEMİ</h3>
-                        <p>Yazılım Mühendisliği | Konya Teknik Üniversitesi</p>
-                    </div>
-                    <div class="card">
-                        <h3>HOBİLER & İLGİ ALANLARI</h3>
-                        <p>Fotoğrafçılık, Oyun Geliştirme (Unity), Gezi</p>
-                    </div>
-                    <div class="card">
-                        <h3>DİLLER & TEKNOLOJİLER</h3>
-                        <p>Java, C++, SQL, Git & GitHub, VS Code</p>
-                    </div>
-                    <div class="card">
-                        <h3>SOSYAL & İLETİŞİM</h3>
-                        <p>Instagram & GitHub profillerime hızlı geçiş.</p>
-                    </div>
+        <!-- Başlangıçtaki Gündüz Çalışma Masası ve Monitör Düzeni -->
+        <div class="desk-setup" id="deskSetup">
+            
+            <div class="monitor-frame">
+                <div class="screen" id="monitorScreen">
+                    <button class="power-btn" id="powerBtn" onclick="turnOnSystem()">
+                        <svg viewBox="0 0 24 24" style="fill: none; stroke: #ef4444; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;">
+                            <!-- Üst kısmı hafif aralık olan çember yayı -->
+                            <path d="M18.36,6.64A9,9 0 1,1 5.64,6.64" />
+                            <!-- Yukarı doğru sarkan dikey çubuk -->
+                            <line x1="12" y1="2" x2="12" y2="10" />
+                        </svg>
+                        <span>SİSTEMİ AÇ</span>
+                    </button>
                 </div>
+            </div>
 
+            <!-- Monitör Ayağı -->
+            <div class="monitor-stand-neck"></div>
+            <div class="monitor-stand-base"></div>
+
+            <!-- Detaylı Klavye ve Mouse -->
+            <div class="desk-accessories">
+                <div class="keyboard">
+                    <div class="key-line"></div>
+                    <div class="key-line"></div>
+                    <div class="key-line"></div>
+                </div>
+                <div class="mouse">
+                    <div class="mouse-wheel"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Monitörün dışına, tüm odaya / ekrana dağılacak kategori kartları -->
+        <div class="categories" id="categoriesContainer">
+            <div class="card">
+                <h3>EĞİTİM & AKADEMİ</h3>
+                <p>Yazılım Mühendisliği | Konya Teknik Üniversitesi</p>
+            </div>
+            <div class="card">
+                <h3>HOBİLER</h3>
+                <p>Fotoğrafçılık, Oyun Geliştirme (Unity), Gezi</p>
+            </div>
+            <div class="card">
+                <h3>TEKNOLOJİLER</h3>
+                <p>Java, C++, SQL, Git & GitHub, VS Code</p>
+            </div>
+            <div class="card">
+                <h3>SOSYAL & İLETİŞİM</h3>
+                <p>Instagram & GitHub profillerime hızlı geçiş.</p>
             </div>
         </div>
+
     </div>
 
     <script>
-        function turnOnMonitor() {
-            const screen = document.getElementById('monitorScreen');
+        function turnOnSystem() {
+            const room = document.getElementById('roomEnv');
             const powerBtn = document.getElementById('powerBtn');
             
             powerBtn.style.opacity = '0';
@@ -52,7 +80,7 @@
             
             setTimeout(() => {
                 powerBtn.style.display = 'none';
-                screen.classList.add('active');
+                room.classList.add('active-system');
             }, 300);
         }
     </script>
