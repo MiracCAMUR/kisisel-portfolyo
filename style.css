@@ -115,27 +115,30 @@ body {
 
 .intro-content {
     position: absolute;
-    width: 620px;
+    width: 600px;
     text-align: center;
     opacity: 0;
-    transform: translate(-50%, -62%) scale(0.8);
+    transform: translate(-50%, -75%) scale(0.8);
     top: 50%;
     left: 50%;
     transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s;
     pointer-events: none;
     z-index: 8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .room.active-system .intro-content {
     opacity: 1;
-    transform: translate(-50%, -62%) scale(1);
+    transform: translate(-50%, -75%) scale(1);
     pointer-events: auto;
 }
 
 .intro-content h1 {
     font-size: 38px;
     color: #33d1ff;
-    margin-bottom: 18px;
+    margin-bottom: 24px;
     letter-spacing: 1.5px;
     text-shadow: 0 0 20px rgba(51, 209, 255, 0.5);
 }
@@ -143,8 +146,8 @@ body {
 .intro-content p {
     font-size: 18px;
     color: #e2e8f0;
-    line-height: 1.6;
-    margin-bottom: 26px;
+    line-height: 1.8;
+    margin-bottom: 50px;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
 }
 
@@ -156,7 +159,28 @@ body {
     text-transform: uppercase;
     font-weight: 600;
     text-shadow: 0 0 12px rgba(239, 68, 68, 0.6);
-    animation: pulseHint 2s infinite;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.intro-hint:hover {
+    color: #ff6b6b;
+    transform: scale(1.05);
+    text-shadow: 0 0 18px rgba(239, 68, 68, 0.9);
+}
+
+/* Tıklandığında tüm kartların 2 saniye boyunca gireceği aktif/parlama durumu */
+.card.pulse-active {
+    border-color: rgba(0, 195, 255, 0.95) !important;
+    box-shadow: 0 0 35px rgba(0, 195, 255, 0.45) !important;
+    background: rgba(0, 195, 255, 0.09) !important;
+    transform: translate(0, 0) scale(1.05) rotate(0deg) !important;
+    z-index: 10;
+}
+
+/* Sosyal kart pulse aktifken kendi konum hizasını bozmasın */
+.social-card.pulse-active {
+    transform: translate(-50%, 0) scale(1.04) rotate(0deg) !important;
 }
 
 @keyframes pulseHint {
@@ -268,40 +292,63 @@ body {
     opacity: 1;
 }
 
+/* İlk 3 Kategori Kartının Konumları */
 .room.active-system .card:nth-child(1) {
-    top: 12%;
-    left: 8%;
-    transform: translate(0, 0) scale(1) rotate(-3deg);
+    top: 15%;
+    left: 12%;
 }
 
 .room.active-system .card:nth-child(2) {
-    top: 12%;
-    right: 8%;
+    top: 15%;
+    right: 12%;
     left: auto;
-    transform: translate(0, 0) scale(1) rotate(2.5deg);
 }
 
 .room.active-system .card:nth-child(3) {
-    bottom: 12%;
+    bottom: 15%;
     top: auto;
-    left: 8%;
-    transform: translate(0, 0) scale(1) rotate(2deg);
+    left: 12%;
 }
 
-.room.active-system .card:nth-child(4) {
-    bottom: 12%;
+/* Sosyal & İletişim Kartı */
+.room.active-system .social-card {
+    bottom: 7%;
     top: auto;
-    right: 8%;
-    left: auto;
-    transform: translate(0, 0) scale(1) rotate(-2.5deg);
+    left: 50%;
+    cursor: pointer;
 }
+
+/* Başlangıçtaki hafif açısal duruşlar (Normal Kartlar) */
+.room.active-system .normal-card:nth-child(1) { transform: rotate(-3deg); }
+.room.active-system .normal-card:nth-child(2) { transform: rotate(2.5deg); }
+.room.active-system .normal-card:nth-child(3) { transform: rotate(2deg); }
+
+/* Sosyal Kart başlangıç konumu */
+.room.active-system .social-card { transform: translate(-50%, 0) rotate(-1deg); }
+
+
+/* --- ORTAK HOVER ANİMASYONLARI (Kusursuz Çalışan Kısım) --- */
 
 .card:hover {
     border-color: rgba(0, 195, 255, 0.95);
     box-shadow: 0 0 35px rgba(0, 195, 255, 0.45);
-    transform: scale(1.05) rotate(0deg) !important;
     background: rgba(0, 195, 255, 0.09);
     z-index: 10;
+}
+
+/* Normal Kartlar üzerine gelince düzleşip büyüyecek */
+.room.active-system .normal-card:nth-child(1):hover { transform: scale(1.05) rotate(0deg); }
+.room.active-system .normal-card:nth-child(2):hover { transform: scale(1.05) rotate(0deg); }
+.room.active-system .normal-card:nth-child(3):hover { transform: scale(1.05) rotate(0deg); }
+
+/* Sosyal Kart kapalıyken hover */
+.social-card:not(.expanded):hover {
+    transform: translate(-50%, 0) scale(1.04) rotate(0deg) !important;
+}
+
+/* Sosyal Kart açıkken hover */
+.social-card.expanded:hover {
+    transform: translate(-50%, 0) scale(1) rotate(0deg) !important;
 }
 
 .card h3 {
@@ -310,4 +357,143 @@ body {
     letter-spacing: 1.5px;
     text-shadow: 0 0 10px rgba(51, 209, 255, 0.5);
     margin: 0;
+    transition: all 0.4s ease;
+}
+
+/* Sosyal Kart Genişleme ve İkon Stilleri */
+.social-card {
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: visible !important;
+}
+
+.social-card .card-default-content {
+    transition: all 0.4s ease;
+}
+
+.social-card .social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    opacity: 0;
+    max-height: 0;
+    overflow: visible !important;
+    transition: all 0.5s ease;
+    position: absolute;
+}
+
+.social-card.expanded {
+    width: 380px;
+    padding: 38px 20px;
+    background: rgba(0, 195, 255, 0.1);
+    border-color: rgba(0, 195, 255, 0.9);
+    box-shadow: 0 0 40px rgba(0, 195, 255, 0.3);
+    overflow: visible !important;
+}
+
+.social-card.expanded .card-default-content {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    margin: 0;
+}
+
+.social-card.expanded .social-icons {
+    opacity: 1;
+    max-height: 100px;
+    position: relative;
+}
+
+.social-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.social-icon svg {
+    width: 28px;
+    height: 28px;
+    fill: #33d1ff;
+    filter: drop-shadow(0 0 6px rgba(51, 209, 255, 0.4));
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: center;
+}
+
+.social-icon:hover svg {
+    transform: scale(1.35);
+    fill: #ffffff;
+    filter: drop-shadow(0 0 18px rgba(51, 209, 255, 0.95));
+}
+
+.education-card {
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: visible !important;
+    cursor: pointer;
+}
+
+.education-card .card-default-content {
+    transition: all 0.4s ease;
+}
+
+.education-card .education-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+.education-card.expanded {
+    width: 390px;
+    padding: 34px 24px;
+    background: rgba(0, 195, 255, 0.1);
+    border-color: rgba(0, 195, 255, 0.9);
+    box-shadow: 0 0 40px rgba(0, 195, 255, 0.3);
+    overflow: visible !important;
+}
+
+.education-card.expanded .card-default-content {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    margin: 0;
+}
+
+.education-card.expanded .education-content {
+    opacity: 1;
+    max-height: 150px;
+    position: relative;
+}
+
+.edu-university {
+    font-size: 20px;
+    color: #ef4444; 
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    text-shadow: 0 0 14px rgba(239, 68, 68, 0.6);
+}
+
+.edu-details {
+    font-size: 16px;
+    color: #e2e8f0;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    font-weight: 500;
+}
+
+.education-card:not(.expanded):hover {
+    transform: scale(1.04) rotate(0deg) !important;
+}
+
+.education-card.expanded:hover {
+    transform: scale(1) rotate(0deg) !important;
 }
