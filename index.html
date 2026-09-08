@@ -42,9 +42,15 @@
 
         </div>
 
-        <div class="intro-content" id="introContent">
+       <div class="intro-content" id="introContent">
+            <div class="code-symbol">&lt;/&gt;</div>
             <h1>Merhaba, ben Miraç</h1>
             <p>Yazılım mühendisliği öğrencisi ve dijital dünyada kendi projelerini üreten bir geliştiriciyim. Nesne yönelimli programlama, katmanlı mimariler ve veri yapıları üzerine yoğunlaşarak güçlü backend sistemleri tasarlıyorum. Yakın zamanda Flutter ekosistemine adım atarak modern ve ölçeklenebilir mobil uygulamalar geliştirmeyi hedefliyorum. Dijital dünyada temiz kod yazmaya, performans optimizasyonuna ve yeni teknolojiler keşfetmeye tutkuyla bağlıyım.</p>
+            
+            <div class="binary-signature" id="binarySig" onclick="toggleBinary()">
+                01010011 01000001 01000111 01001001 01010100 01010100 01000001 01010010 01001001 01010101 01010011
+            </div>
+
             <span class="intro-hint" onclick="triggerAllCardsAnimation()">Kategorilere göz at</span>
         </div>
 
@@ -62,7 +68,10 @@
                 <h3>HOBİLER & İLGİ ALANLARI</h3>
             </div>
             <div class="card normal-card">
-                <h3>TEKNOLOJİLER</h3>
+                <h3>PROJELER</h3>
+            </div>
+            <div class="card normal-card" id="skillsCard">
+                <h3>YETENEKLER</h3>
             </div>
             <div class="card social-card" id="socialCard" onclick="handleSocialCardClick(event, this)">
                 <div class="card-default-content">
@@ -111,11 +120,24 @@
 
         function handleEducationCardClick(event, card) {
             event.stopPropagation();
-            // Sosyal kart açıksa kapat, eğitim kartını aç/genişlet
             if (!card.classList.contains('expanded')) {
                 event.preventDefault();
                 card.classList.add('expanded');
             }
+        }
+
+        function triggerAllCardsAnimation() {
+            const allCards = document.querySelectorAll('.categories .card');
+            
+            allCards.forEach(card => {
+                card.classList.add('pulse-active');
+            });
+
+            setTimeout(() => {
+                allCards.forEach(card => {
+                    card.classList.remove('pulse-active');
+                });
+            }, 1500);
         }
 
         document.addEventListener('click', function() {
