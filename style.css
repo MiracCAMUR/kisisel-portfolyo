@@ -283,6 +283,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%) scale(0.2);
     opacity: 0;
+    cursor: pointer;
 }
 
 .room.active-system .categories .card {
@@ -538,4 +539,175 @@ body {
 .binary-signature:hover {
     color: rgba(51, 209, 255, 0.95);
     text-shadow: 0 0 12px rgba(51, 209, 255, 0.6);
+}
+
+/* Arka planı karartan ve bulanıklaştıran perde */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 5, 10, 0.75);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Modal pencere (Ortada açılacak kutu) */
+.modal-box {
+    width: 650px;
+    max-width: 90%;
+    min-height: 400px;
+    background: rgba(15, 18, 30, 0.95);
+    border: 1px solid rgba(51, 209, 255, 0.4);
+    box-shadow: 0 0 30px rgba(51, 209, 255, 0.25);
+    border-radius: 12px;
+    padding: 30px;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+/* Modal açıldığında tetiklenen sınıf */
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-overlay.active .modal-box {
+    transform: scale(1);
+}
+
+/* Kutunun sağ üst köşesinden dışarı taşan sivri çarpı butonu */
+.modal-close-btn {
+    position: absolute;
+    top: -18px;
+    right: -18px;
+    width: 40px;
+    height: 40px;
+    background: #0f121e;
+    border: 1px solid rgba(51, 209, 255, 0.6);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(51, 209, 255, 0.4);
+    z-index: 10;
+    transition: all 0.25s ease;
+}
+
+.modal-close-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: #33d1ff;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    transition: transform 0.25s ease, stroke 0.25s ease;
+    filter: drop-shadow(0 0 6px rgba(51, 209, 255, 0.8));
+}
+
+.modal-close-btn:hover {
+    background: rgba(51, 209, 255, 0.15);
+    border-color: #33d1ff;
+    transform: scale(1.15);
+    box-shadow: 0 0 25px rgba(51, 209, 255, 0.8);
+}
+
+.modal-close-btn:hover svg {
+    stroke: #ffffff;
+    transform: rotate(90deg);
+}
+
+/* Modal İçerik Tasarımı */
+.skills-modal-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Modal Başlık Tasarımı - Büyütüldü */
+.skills-modal-title {
+    font-size: 28px; /* 📌 Bir tık büyütüldü */
+    color: #33d1ff;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 12px rgba(51, 209, 255, 0.6);
+}
+
+/* Modal Alt Açıklama - Büyütüldü */
+.skills-modal-subtitle {
+    font-size: 15px; /* 📌 Bir tık büyütüldü ve okunabilirliği artırıldı */
+    color: #cbd5e1;
+    margin-bottom: 30px;
+}
+
+/* Kategorileri düzenleyen grid yapısı - Boşluklar ve oranlar genişletildi */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px; /* 📌 Kutular arası mesafe artırıldı */
+}
+
+@media (max-width: 600px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Her bir kategori kutusu - Bir tık büyütüldü ve ferahlatıldı */
+.skill-category-card {
+    background: rgba(0, 195, 255, 0.04);
+    border: 1px solid rgba(51, 209, 255, 0.3);
+    border-radius: 10px;
+    padding: 20px; /* 📌 İç boşluk artırılarak kutular büyütüldü */
+    transition: all 0.3s ease;
+}
+
+.skill-category-card:hover {
+    border-color: rgba(51, 209, 255, 0.8);
+    box-shadow: 0 0 20px rgba(51, 209, 255, 0.2);
+    background: rgba(0, 195, 255, 0.08);
+}
+
+.skill-category-card h3 {
+    font-size: 15px; /* 📌 Kategori başlığı büyütüldü */
+    color: #ffffff;
+    letter-spacing: 1.2px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+}
+
+/* Yetenek etiketleri (buton/badge görünümü) - Bir tık daha dolgun */
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-tag {
+    font-size: 13px; /* 📌 Etiket yazı boyutu büyütüldü */
+    background: rgba(51, 209, 255, 0.12);
+    color: #33d1ff;
+    border: 1px solid rgba(51, 209, 255, 0.4);
+    padding: 7px 14px; /* 📌 Etiketlerin kendisi büyütüldü */
+    border-radius: 20px;
+    letter-spacing: 0.8px;
+    text-shadow: 0 0 6px rgba(51, 209, 255, 0.5);
+    transition: all 0.2s ease;
+}
+
+.skill-tag:hover {
+    background: rgba(51, 209, 255, 0.3);
+    color: #ffffff;
+    border-color: #33d1ff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 12px rgba(51, 209, 255, 0.7);
 }

@@ -70,7 +70,7 @@
             <div class="card normal-card">
                 <h3>PROJELER</h3>
             </div>
-            <div class="card normal-card" id="skillsCard">
+            <div class="card normal-card" onclick="openSkillsModal()">
                 <h3>YETENEKLER</h3>
             </div>
             <div class="card social-card" id="socialCard" onclick="handleSocialCardClick(event, this)">
@@ -93,6 +93,7 @@
                 </div>
             </div>
         </div>
+        
 
     </div>
 
@@ -151,6 +152,63 @@
             }
         });
     </script>
+    
     <script src="script.js"></script>
+    <!-- Yetenekler Modal Penceresi -->
+    <div class="modal-overlay" id="skillsModal">
+    <div class="modal-box">
+        <button class="modal-close-btn" onclick="closeSkillsModal()">
+            <svg viewBox="0 0 24 24" fill="none">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+        </button>
+        
+        <div class="skills-modal-content">
+            <h2 class="skills-modal-title">YETENEKLERİM</h2>
+            <p class="skills-modal-subtitle">Geliştirdiğim teknik yetkinlikler ve kullandığım teknolojiler</p>
+            
+            <div class="skills-grid">
+                <!-- 1. Mobil -->
+                <div class="skill-category-card">
+                    <h3>Mobil</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Flutter</span>
+                        <span class="skill-tag">Dart</span>
+                    </div>
+                </div>
+
+                <!-- 2. Sistem & Core Programlama -->
+                <div class="skill-category-card">
+                    <h3>Sistem & Core</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Java</span>
+                    </div>
+                </div>
+
+                <!-- 3. Veritabanı -->
+                <div class="skill-category-card">
+                    <h3>Veritabanı</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">SQLite</span>
+                    </div>
+                </div>
+
+                <!-- 4. Araçlar & Teknolojiler -->
+                <div class="skill-category-card">
+                    <h3>Araçlar & Teknolojiler</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">VS Code</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

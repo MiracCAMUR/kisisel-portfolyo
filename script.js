@@ -33,3 +33,17 @@ function toggleBinary() {
         sig.style.textShadow = "0 0 8px rgba(51, 209, 255, 0.3)";
     }
 }
+
+function openSkillsModal() {
+    const modal = document.getElementById('skillsModal');
+    if (modal) {
+        modal.classList.add('active');
+    }
+}
+
+function closeSkillsModal() {
+    const modal = document.getElementById('skillsModal');
+    if (modal) {
+        modal.classList.remove('active');
+    }
+}
