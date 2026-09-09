@@ -61,3 +61,17 @@ function closeHobbiesModal() {
         modal.classList.remove('active');
     }
 }
+
+function openProjectsModal() {
+    const modal = document.getElementById('projectsModal');
+    if (modal) {
+        modal.classList.add('active');
+    }
+}
+
+function closeProjectsModal() {
+    const modal = document.getElementById('projectsModal');
+    if (modal) {
+        modal.classList.remove('active');
+    }
+}
