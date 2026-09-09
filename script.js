@@ -90,3 +90,32 @@ function openMail(event) {
         window.open("https://mail.google.com/mail/?view=cm&fs=1&to=mmiraccamur@gmail.com", "_blank");
     }
 }
+
+function openSocialLink(event, webUrl, platform) {
+    event.preventDefault();
+    
+    // Kullanıcının telefondan mı yoksa bilgisayardan mı girdiğini tespit ediyoruz
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        let appScheme = webUrl;
+        
+        // Mobil cihazlarda ilgili uygulama yüklüyse doğrudan uygulamayı açmaya çalışır
+        if (platform === 'instagram') {
+            appScheme = `instagram://user?username=${webUrl.split('/').pop()}`;
+        } else if (platform === 'linkedin') {
+            appScheme = `linkedin://in/${webUrl.split('/in/')[1]}`;
+        } else if (platform === 'github') {
+            appScheme = `github://u/${webUrl.split('github.com/')[1]}`;
+        }
+        
+        // Uygulamayı tetikler, eğer uygulama yoksa tarayıcı üzerinden web sitesine devam eder
+        window.location.href = appScheme;
+        setTimeout(() => {
+            window.open(webUrl, '_blank');
+        }, 500);
+    } else {
+        // Bilgisayardaysa: Doğrudan yeni sekmede web adresini açar
+        window.open(webUrl, '_blank');
+    }
+}
