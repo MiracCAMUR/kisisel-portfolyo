@@ -938,3 +938,15 @@ body {
     stroke: #33d1ff;
     transform: scale(1.1);
 }
+/* Sosyal kart kapalıyken içindeki ikonlar tıklanamaz ve pasiftir */
+.social-card .social-icons {
+    pointer-events: none; /* Kapalıyken tıklama algılamaz */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Sosyal kart açıldığında (expanded olunca) ikonlar tıklanabilir hale gelir */
+.social-card.expanded .social-icons {
+    pointer-events: auto; /* Açılınca tıklanabilir olur */
+    opacity: 1;
+}

@@ -75,3 +75,18 @@ function closeProjectsModal() {
         modal.classList.remove('active');
     }
 }
+
+function openMail(event) {
+    event.preventDefault(); // Sayfanın yukarı kaymasını veya varsayılan link davranışı yapmasını engeller
+    
+    // Kullanıcının telefondan mı yoksa bilgisayardan mı girdiğini tespit ediyoruz
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        // 📱 Telefondaysa: Doğrudan cihazdaki mail/Gmail uygulamasını açar
+        window.location.href = "mailto:mmiraccamur@gmail.com";
+    } else {
+        // 💻 Bilgisayardaysa: Her koşulda yeni sekmede web üzerinden Gmail'i açar
+        window.open("https://mail.google.com/mail/?view=cm&fs=1&to=mmiraccamur@gmail.com", "_blank");
+    }
+}
