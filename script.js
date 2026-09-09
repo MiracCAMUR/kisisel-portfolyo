@@ -47,3 +47,17 @@ function closeSkillsModal() {
         modal.classList.remove('active');
     }
 }
+
+function openHobbiesModal() {
+    const modal = document.getElementById('hobbiesModal');
+    if (modal) {
+        modal.classList.add('active');
+    }
+}
+
+function closeHobbiesModal() {
+    const modal = document.getElementById('hobbiesModal');
+    if (modal) {
+        modal.classList.remove('active');
+    }
+}

@@ -64,7 +64,7 @@
                     <p class="edu-details">Yazılım Mühendisliği | 2024 - ...</p>
                 </div>
             </div>
-            <div class="card normal-card">
+            <div class="card normal-card" onclick="openHobbiesModal()">
                 <h3>HOBİLER & İLGİ ALANLARI</h3>
             </div>
             <div class="card normal-card">
@@ -204,6 +204,80 @@
                         <span class="skill-tag">Git</span>
                         <span class="skill-tag">GitHub</span>
                         <span class="skill-tag">VS Code</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hobiler & İlgi Alanları Modal Penceresi -->
+<div class="modal-overlay" id="hobbiesModal">
+    <div class="modal-box hobbies-modal-box">
+        <button class="modal-close-btn" onclick="closeHobbiesModal()">
+            <svg viewBox="0 0 24 24" fill="none">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+        </button>
+        
+        <div class="hobbies-modal-content">
+            <h2 class="skills-modal-title">HOBİLER & İLGİ ALANLARI</h2>
+            <p class="skills-modal-subtitle">Dijital dünya dışında odaklandığım tutkular ve aktiviteler</p>
+            
+            <div class="hobbies-grid">
+
+               <!-- 1. Formula 1 (Pinterest Canlı Linki) -->
+                <div class="hobby-card">
+                    <div class="hobby-img-container">
+                        <img src="https://i.pinimg.com/1200x/52/d5/59/52d5598a7c1b5ee04954924c6be828b2.jpg" alt="Formula 1 Logosu">
+                    </div>
+                    <div class="hobby-info">
+                        <h3>FORMULA 1</h3>
+                        <p>Hız, strateji ve mühendislik harikası araçların rekabetini soluksuz takip etmek.</p>
+                    </div>
+                </div>
+
+                <!-- 2. Video Oyunları -->
+                <div class="hobby-card">
+                    <div class="hobby-img-container">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=600&auto=format&fit=crop" alt="Video Oyunları">
+                    </div>
+                    <div class="hobby-info">
+                        <h3>VİDEO OYUNLARI</h3>
+                        <p>Rekabetçi ve hikaye tabanlı yapımlarla strateji kurup dünyadan kopmak.</p>
+                    </div>
+                </div>
+
+                <!-- 3. Vücut Geliştirme -->
+                <div class="hobby-card">
+                    <div class="hobby-img-container">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop" alt="Vücut Geliştirme">
+                    </div>
+                    <div class="hobby-info">
+                        <h3>VÜCUT GELİŞTİRME</h3>
+                        <p>Fiziki ve mental disiplini artırarak sürekli gelişim odaklı antrenman yapmak.</p>
+                    </div>
+                </div>
+
+                <!-- 4. Yeni Şeyler Öğrenmek -->
+                <div class="hobby-card">
+                    <div class="hobby-img-container">
+                        <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=600&auto=format&fit=crop" alt="Araştırma ve Öğrenme">
+                    </div>
+                    <div class="hobby-info">
+                        <h3>YENİ ŞEYLER ÖĞRENMEK</h3>
+                        <p>Teknoloji, bilim ve farklı disiplinler üzerine derinlemesine araştırmalar yapmak.</p>
+                    </div>
+                </div>
+
+                <!-- 5. Satranç (Tam ortaya veya alta şık oturması için) -->
+                <div class="hobby-card hobby-card-full">
+                    <div class="hobby-img-container">
+                        <img src="https://images.unsplash.com/photo-1529699211952-734e80c4d42b?q=80&w=600&auto=format&fit=crop" alt="Satranç">
+                    </div>
+                    <div class="hobby-info">
+                        <h3>SATRANÇ</h3>
+                        <p>Hamleleri önceden hesaplayarak analitik düşünceyi ve taktiksel zekayı keskin tutmak.</p>
                     </div>
                 </div>
             </div>

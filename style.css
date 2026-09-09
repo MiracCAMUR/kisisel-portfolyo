@@ -711,3 +711,117 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 0 12px rgba(51, 209, 255, 0.7);
 }
+
+/* Hobiler Modal Kutusu - Görseller ve metinler için daha geniş tasarlandı */
+/* Hobiler Modal Kutusu - Genel olarak büyütüldü ve ferahlatıldı */
+.hobbies-modal-box {
+    width: 950px; /* 📌 Kutunun genişliği artırıldı */
+    max-width: 95%;
+    min-height: 560px; /* 📌 Yüksekliği artırıldı */
+    padding: 40px; /* 📌 İç boşluklar büyütüldü */
+}
+
+/* Hobiler Grid Yerleşimi - Kartlar büyüdüğü için boşluklar güncellendi */
+.hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    max-height: 420px;
+    overflow-y: auto;
+    padding: 12px 10px;
+}
+
+/* Scrollbar Estetiği */
+.hobbies-grid::-webkit-scrollbar {
+    width: 8px;
+}
+.hobbies-grid::-webkit-scrollbar-track {
+    background: rgba(15, 18, 30, 0.5);
+    border-radius: 4px;
+}
+.hobbies-grid::-webkit-scrollbar-thumb {
+    background: rgba(51, 209, 255, 0.4);
+    border-radius: 4px;
+}
+
+@media (max-width: 750px) {
+    .hobbies-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tekil Hobi Kartı - Orantılı olarak büyütüldü */
+.hobby-card {
+    background: rgba(0, 195, 255, 0.03);
+    border: 1px solid rgba(51, 209, 255, 0.25);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 1;
+}
+
+.hobby-card:hover {
+    border-color: rgba(51, 209, 255, 0.9);
+    box-shadow: 0 0 30px rgba(51, 209, 255, 0.35);
+    background: rgba(0, 195, 255, 0.08);
+    transform: translateY(-4px) scale(1.02);
+    z-index: 10;
+}
+
+.hobby-card-full {
+    grid-column: span 2;
+}
+@media (max-width: 750px) {
+    .hobby-card-full {
+        grid-column: span 1;
+    }
+}
+
+/* Hobi Görsel Alanı - Kartlar büyüdüğü için görsel alanı da genişletildi */
+.hobby-img-container {
+    width: 100%;
+    height: 140px; /* 📌 Görsel alanı büyütüldü */
+    overflow: hidden;
+    position: relative;
+    background: #000; /* Logo arka planı için siyah uyum */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hobby-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+.hobby-card:hover .hobby-img-container img {
+    transform: scale(1.08);
+    opacity: 1;
+}
+
+/* Hobi Yazı Alanı - Yazılar okunaklı olması için büyütüldü */
+.hobby-info {
+    padding: 18px; /* 📌 İç boşluk artırıldı */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.hobby-info h3 {
+    font-size: 16px; /* 📌 Başlık büyütüldü */
+    color: #ffffff;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+.hobby-info p {
+    font-size: 13.5px; /* 📌 Açıklama metni büyütüldü, okunabilirlik artırıldı */
+    color: #cbd5e1;
+    line-height: 1.5;
+}
