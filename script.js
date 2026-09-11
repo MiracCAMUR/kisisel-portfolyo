@@ -94,28 +94,28 @@ function openMail(event) {
 function openSocialLink(event, webUrl, platform) {
     event.preventDefault();
     
-    // Kullanıcının telefondan mı yoksa bilgisayardan mı girdiğini tespit ediyoruz
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
     if (isMobile) {
         let appScheme = webUrl;
         
-        // Mobil cihazlarda ilgili uygulama yüklüyse doğrudan uygulamayı açmaya çalışır
+        // Platformlara göre doğru mobil uygulama protokollerini (Intent/Scheme) belirliyoruz
         if (platform === 'instagram') {
             appScheme = `instagram://user?username=${webUrl.split('/').pop()}`;
         } else if (platform === 'linkedin') {
-            appScheme = `linkedin://in/${webUrl.split('/in/')[1]}`;
+            // LinkedIn profilini doğrudan mobil uygulamada açmak için güncel şema
+            appScheme = `linkedin://profile/${webUrl.split('/in/')[1]?.replace('/', '')}`;
         } else if (platform === 'github') {
-            appScheme = `github://u/${webUrl.split('github.com/')[1]}`;
+            // GitHub uygulamasını tetikleyecek doğru şema yapısı
+            appScheme = `github://user/${webUrl.split('github.com/')[1]}`;
         }
         
-        // Uygulamayı tetikler, eğer uygulama yoksa tarayıcı üzerinden web sitesine devam eder
+        // Önce uygulamayı açmayı dener, uygulama yoksa web sitesine yönlendirir
         window.location.href = appScheme;
         setTimeout(() => {
             window.open(webUrl, '_blank');
-        }, 500);
+        }, 600);
     } else {
-        // Bilgisayardaysa: Doğrudan yeni sekmede web adresini açar
         window.open(webUrl, '_blank');
     }
 }
