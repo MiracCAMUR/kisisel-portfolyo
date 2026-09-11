@@ -96,26 +96,12 @@ function openSocialLink(event, webUrl, platform) {
     
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
-    if (isMobile) {
-        let appScheme = webUrl;
-        
-        // Platformlara göre doğru mobil uygulama protokollerini (Intent/Scheme) belirliyoruz
-        if (platform === 'instagram') {
-            appScheme = `instagram://user?username=${webUrl.split('/').pop()}`;
-        } else if (platform === 'linkedin') {
-            // LinkedIn profilini doğrudan mobil uygulamada açmak için güncel şema
-            appScheme = `linkedin://profile/${webUrl.split('/in/')[1]?.replace('/', '')}`;
-        } else if (platform === 'github') {
-            // GitHub uygulamasını tetikleyecek doğru şema yapısı
-            appScheme = `github://user/${webUrl.split('github.com/')[1]}`;
-        }
-        
-        // Önce uygulamayı açmayı dener, uygulama yoksa web sitesine yönlendirir
-        window.location.href = appScheme;
-        setTimeout(() => {
-            window.open(webUrl, '_blank');
-        }, 600);
+    // Sadece mobilde ve platform Instagram ise doğrudan uygulamayı tetikliyoruz (arkada web açılmıyor)
+    if (isMobile && platform === 'instagram') {
+        const username = webUrl.split('/').pop();
+        window.location.href = `instagram://user?username=${username}`;
     } else {
+        // GitHub, LinkedIn ve masaüstü kullanımlarında her şey güvenli bir şekilde web üzerinden açılıyor
         window.open(webUrl, '_blank');
     }
 }
