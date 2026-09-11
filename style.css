@@ -177,9 +177,6 @@ body {
     z-index: 10;
 }
 
-.social-card.pulse-active {
-    transform: translate(-50%, 0) scale(1.04) rotate(0deg) !important;
-}
 
 @keyframes pulseHint {
     0%, 100% { opacity: 0.6; }
@@ -318,11 +315,22 @@ body {
 }
 
 /* 5. Sosyal & İletişim Kartı (En Alt Orta) */
-.room.active-system .social-card {
-    bottom: 7%;
-    top: auto;
-    left: 50%;
-    cursor: pointer;
+.room.active-system .social-card { 
+    bottom: 7%; 
+    top: auto; 
+    left: 0; 
+    right: 0; 
+    margin: 0 auto; 
+    cursor: pointer; 
+    transform: rotate(-1deg); 
+}
+
+.social-card:not(.expanded):hover {
+    transform: scale(1.04) rotate(0deg) !important;
+}
+
+.social-card.expanded:hover {
+    transform: scale(1) rotate(0deg) !important;
 }
 
 .room.active-system .normal-card:nth-child(1) { transform: rotate(-3deg); }
@@ -330,7 +338,7 @@ body {
 .room.active-system .normal-card:nth-child(3) { transform: rotate(2deg); }
 .room.active-system .normal-card:nth-child(4) { transform: rotate(-2deg); }
 
-.room.active-system .social-card { transform: translate(-50%, 0) rotate(-1deg); }
+
 
 .card:hover {
     border-color: rgba(0, 195, 255, 0.95);
@@ -344,13 +352,6 @@ body {
 .room.active-system .normal-card:nth-child(3):hover { transform: scale(1.05) rotate(0deg); }
 .room.active-system .normal-card:nth-child(4):hover { transform: scale(1.05) rotate(0deg); }
 
-.social-card:not(.expanded):hover {
-    transform: translate(-50%, 0) scale(1.04) rotate(0deg) !important;
-}
-
-.social-card.expanded:hover {
-    transform: translate(-50%, 0) scale(1) rotate(0deg) !important;
-}
 
 .card h3 {
     font-size: 17px;
@@ -949,4 +950,123 @@ body {
 .social-card.expanded .social-icons {
     pointer-events: auto; /* Açılınca tıklanabilir olur */
     opacity: 1;
+}
+
+/* --- MOBİL İÇİN TEK VE NİHAİ KUSURSUZ AKIŞ MİMARİSİ --- */
+@media (max-width: 768px) {
+    /* Sayfanın sağa sola kaymasını önleyip siyah temayı sabitliyoruz */
+    html, body {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background-color: #050810 !important;
+    }
+
+    /* Sistem açıldığında arka plandaki siyah perde tüm ekranı kaplasın ve kaydırılsın */
+    .room, .room.active-system {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 40px 15px 80px 15px !important;
+        box-sizing: border-box !important;
+        z-index: 999 !important;
+        background: linear-gradient(to bottom, #111827 0%, #0a0f18 40%, #030408 100%) !important;
+    }
+
+    /* Aradaki masaüstü monitör ve gereksiz masa aksesuarlarını mobilde gizleyip sadece akışı bırakıyoruz */
+    .desk-setup, .dark-cloud-effect {
+        display: none !important;
+    }
+
+    /* Tanıtım yazısı, logo ve intro kutusunu mobilde normal dikey akışa sokuyoruz */
+    .intro-content {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        width: 92% !important;
+        max-width: 92% !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        margin: 15px auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .intro-content h1 {
+        font-size: 24px !important;
+        margin-bottom: 12px !important;
+    }
+
+    .intro-content p {
+        font-size: 0.85rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 20px !important;
+    }
+
+    /* Kategoriler ve kartları mobilde kusursuz bir şekilde alt alta diziyoruz */
+    .categories {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        width: 100% !important;
+        height: auto !important;
+        pointer-events: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 15px !important;
+        margin-top: 10px !important;
+    }
+
+    .card, .social-card, .education-card {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        width: 92% !important;
+        max-width: 92% !important;
+        margin: 0 auto 15px auto !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    /* Yazıların ekrana rahat sığması */
+    p, span, h3 {
+        font-size: 0.85rem !important;
+        word-break: break-word !important;
+    }
+    /* SOSYAL KARTIN SOLA KAYMASINI ENGELLEYEN KESİN ÇÖZÜM */
+    /* Masaüstündeki yüksek öncelikli :hover ve expanded kurallarını tek tek eziyoruz */
+    .room.active-system .social-card,
+    .room.active-system .social-card:hover,
+    .room.active-system .social-card.expanded,
+    .room.active-system .social-card.expanded:hover,
+    .social-card:not(.expanded):hover {
+        transform: none !important;
+        left: auto !important;
+        right: auto !important;
+        margin: 0 auto 15px auto !important;
+        width: 92% !important;
+        max-width: 92% !important;
+    }
 }

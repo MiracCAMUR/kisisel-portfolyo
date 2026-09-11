@@ -119,3 +119,17 @@ function openSocialLink(event, webUrl, platform) {
         window.open(webUrl, '_blank');
     }
 }
+// --- MOBİL ELEMENT SIRALAMA VE AKIŞ DÜZENLEYİCİSİ ---
+window.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth <= 768) {
+        const introContent = document.querySelector('.intro-content');
+        const hint = document.querySelector('.intro-hint');
+        const binary = document.querySelector('.binary-signature, .easter-egg, [class*="binary"]');
+
+        // İstediğin sıralama: Önce intro yazısı, hemen altında binary, onun altında "Kategorilere Göz At"
+        if (introContent && hint && binary) {
+            introContent.appendChild(binary); // Binary'yi yazının altına al
+            introContent.appendChild(hint);   // Hint'i binary'nin altına al
+        }
+    }
+});
